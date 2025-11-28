@@ -139,15 +139,19 @@ export default function Contact() {
                     </p>
                   </div>
 
-                  <form className="space-y-6">
+                  <form 
+                    action="https://formspree.io/f/mvgaerga"
+                    method="POST"
+                    className="space-y-6"
+                  >
                     {/* Grid para nombre y email */}
                     <div className="grid md:grid-cols-2 gap-6">
-                      <FloatInput id="name" label="Nombre completo" type="text" />
-                      <FloatInput id="email" label="Email" type="email" />
+                      <FloatInput id="name" name="name" label="Nombre completo" type="text" />
+                      <FloatInput id="email" name="email" label="Email" type="email" />
                     </div>
 
-                    <FloatInput id="subject" label="Asunto" type="text" />
-                    <FloatTextarea id="message" label="Mensaje" />
+                    <FloatInput id="subject" name="subject" label="Asunto" type="text" />
+                    <FloatTextarea id="message" name="message" label="Mensaje" />
 
                     <button
                       type="submit"
@@ -227,11 +231,12 @@ function SocialIcon({ href, icon, color }: any) {
 }
 
 /* INPUT CON FLOAT LABEL ANIMADO */
-function FloatInput({ id, label, type }: any) {
+function FloatInput({ id, name, label, type }: any) {
   return (
     <div className="relative group">
       <input
         id={id}
+        name={name}
         type={type}
         required
         className="
@@ -274,11 +279,12 @@ function FloatInput({ id, label, type }: any) {
 }
 
 
-function FloatTextarea({ id, label }: any) {
+function FloatTextarea({ id, name, label }: any) {
   return (
     <div className="relative group">
       <textarea
         id={id}
+        name={name}
         required
         rows={6}
         className="

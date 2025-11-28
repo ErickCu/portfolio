@@ -1,8 +1,29 @@
 @import "tailwindcss";
 
+/* ===================================================
+   VARIABLES GLOBALES DEL PORTFOLIO
+   =================================================== */
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  
+  /* Colores primarios unificados */
+  --primary: #6366f1;
+  --primary-dark: #4f46e5;
+  --primary-light: #818cf8;
+  
+  /* Efectos de glow */
+  --glow-indigo: rgba(99, 102, 241, 0.2);
+  --glow-sky: rgba(56, 189, 248, 0.2);
+}
+
+/* Dark mode variables */
+.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  --glow-indigo: rgba(99, 102, 241, 0.3);
+  --glow-sky: rgba(56, 189, 248, 0.3);
 }
 
 @theme inline {
@@ -12,15 +33,140 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  scroll-behavior: smooth;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Forzar transiciones suaves en todos los elementos de texto */
+* {
+  transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Asegurar que los títulos y textos se adapten */
+h1, h2, h3, h4, h5, h6, p, span, a, div, label, input, textarea, button {
+  transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* ---------------------------------------------------
+   ANIMACIONES CUSTOM PARA EL HERO
+   --------------------------------------------------- */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.9s ease forwards;
+}
+
+.animate-fadeUp {
+  opacity: 0;
+  transform: translateY(25px);
+  animation: fadeUp 0.7s ease-out forwards;
+}
+
+.delay-150 {
+  animation-delay: 0.15s;
+}
+
+.delay-200 {
+  animation-delay: 0.2s;
+}
+
+.delay-300 {
+  animation-delay: 0.3s;
+}
+
+.delay-500 {
+  animation-delay: 0.5s;
+}
+
+.delay-700 {
+  animation-delay: 0.7s;
+}
+
+/* ---------------------------------------------------
+   ANIMACIONES DE SCROLL
+   --------------------------------------------------- */
+
+/* Estado inicial: oculto */
+.scroll-animation {
+  opacity: 0;
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Estado visible después de scroll */
+.scroll-animation.animate-visible {
+  opacity: 1;
+  transform: translate(0, 0) scale(1);
+}
+
+/* Fade Up - desliza desde abajo */
+.scroll-animation-fade-up {
+  transform: translateY(50px);
+}
+
+/* Fade In - solo opacidad */
+.scroll-animation-fade-in {
+  transform: none;
+}
+
+/* Slide Left - desliza desde la derecha */
+.scroll-animation-slide-left {
+  transform: translateX(50px);
+}
+
+/* Slide Right - desliza desde la izquierda */
+.scroll-animation-slide-right {
+  transform: translateX(-50px);
+}
+
+/* Zoom In - escala desde pequeño */
+.scroll-animation-zoom-in {
+  transform: scale(0.9);
+}
+
+.tag {
+  @apply bg-zinc-200 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 text-xs px-3 py-1 rounded-full;
+}
+
+.btn-primary {
+  @apply px-6 py-3 rounded-lg font-medium transition-all duration-300 inline-flex items-center gap-2;
+  @apply bg-indigo-600 text-white hover:bg-indigo-500 shadow-lg hover:shadow-indigo-500/30 active:scale-95;
+}
+
+.btn-secondary {
+  @apply px-6 py-3 rounded-lg font-medium transition-all duration-300 inline-flex items-center gap-2;
+  @apply bg-zinc-900 dark:bg-zinc-800 text-white hover:bg-zinc-800 dark:hover:bg-zinc-700 shadow-lg;
+}
+
+.btn-ghost {
+  @apply px-6 py-3 rounded-lg font-medium transition-all duration-300 inline-flex items-center gap-2;
+  @apply border border-zinc-300 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800;
+}
+
+.btn-disabled {
+  @apply px-4 py-2 bg-zinc-300 dark:bg-zinc-800 text-zinc-500 dark:text-zinc-500 rounded-md cursor-not-allowed;
 }

@@ -75,7 +75,7 @@ export default function Contact() {
                 <ContactItem
                   icon={<FiMail />}
                   title="Email"
-                  text="erickl.cuenca.cl@gmail.com"
+                  text="erick.cuenca.cl@gmail.com"
                   color="#38BDF8"
                 />
 
